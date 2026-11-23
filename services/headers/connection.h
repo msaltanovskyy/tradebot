@@ -6,33 +6,41 @@
 #define TRADEBOTV2_CONNECTION_H
 
 #include <string>
+#include <vector>
 
 class Connection {
 
 private:
     std::string market;
-    std::string timeframes[3];
-    int limit{};
+    std::vector<std::string> timeframes;
+    int64_t limit;
     std::string connection_title;
     std::string connection_url;
-    std::string t_zone;
+    int32_t t_zone;
 public:
-    Connection();
+    Connection() {
+        this -> market = set_market();
+        this -> timeframes = set_timeframes();
+        this -> limit = set_limit();
+        this -> connection_title = set_connection_title();
+        this -> connection_url = set_connection_url();
+        this -> t_zone = set_t_zone();
+    };
     ~Connection();
     //set market symbol (ex. BTC/USTD)
-    static std::string set_market(const std::string &market);
+    static std::string set_market();
     //set timeframe (ex. 1h)
-    std::string set_timeframes(const std::string (&timeframes)[3]);
+    static std::vector<std::string> set_timeframes();
     //set limit (ex. 100)
-    int64_t set_limit(const int &limit);
+    static int64_t set_limit();
     //set connection title (ex. Binance_1h)
-    static std::string set_connection_title(const std::string &title);
+    static std::string set_connection_title();
     //set connection api (ex. https://api.binance.com)
-    static std::string set_connection_url(const std::string &url);
+    static std::string set_connection_url();
     //set timezone (ex. 4)
-    static int32_t set_t_zone(const int32_t &t_zone);
-    //get_param_connection
-    void get_connection_info();
+    static int32_t set_t_zone();
+    //get params of connection
+    void get_connection_info() const;
     void create_connection();
     void close_connection();
 };
