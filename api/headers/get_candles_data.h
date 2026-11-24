@@ -12,26 +12,28 @@ class Connection {
 
 private:
     std::string market;
-    std::vector<std::string> timeframes;
+    std::string timeframes;
     int64_t limit;
-    std::string connection_title;
-    std::string connection_url;
+    std::string hostname;
+    std::string route;
     int32_t t_zone;
 public:
     Connection(std::string market,
-           std::vector<std::string> timeframes,
+           std::string timeframes,
            int64_t limit,
-           std::string title,
-           std::string url,
+           std::string hostname,
+           std::string route,
            int32_t time_zone)
     : market(std::move(market)),
       timeframes(std::move(timeframes)),
       limit(limit),
-      connection_title(std::move(title)),
-      connection_url(std::move(url)),
+      hostname(std::move(hostname)),
+      route(std::move(route)),
       t_zone(time_zone) {}
+
     ~Connection();
-    void create_connection();
+
+    void get_candles_data();
     void close_connection();
 };
 
