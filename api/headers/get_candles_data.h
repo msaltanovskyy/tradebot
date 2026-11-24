@@ -8,30 +8,30 @@
 #include <string>
 #include <vector>
 
-class Connection {
+class GetCandlesData {
 
 private:
     std::string market;
-    std::string timeframes;
+    std::string timeframe;
     int64_t limit;
     std::string hostname;
     std::string route;
     int32_t t_zone;
 public:
-    Connection(std::string market,
-           std::string timeframes,
+    GetCandlesData(std::string market,
+           std::string timeframe,
            int64_t limit,
            std::string hostname,
            std::string route,
            int32_t time_zone)
     : market(std::move(market)),
-      timeframes(std::move(timeframes)),
+      timeframe(std::move(timeframe)),
       limit(limit),
       hostname(std::move(hostname)),
       route(std::move(route)),
       t_zone(time_zone) {}
 
-    ~Connection();
+    ~GetCandlesData();
 
     void get_candles_data();
     void close_connection();
