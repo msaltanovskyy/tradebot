@@ -8,6 +8,16 @@
 #include <string>
 #include <vector>
 
+
+struct CandlesData {
+    std::string open;
+    std::string close;
+    std::string high;
+    std::string low;
+    std::string volume;
+    int time;
+};
+
 class GetCandlesData {
 
 private:
@@ -33,8 +43,8 @@ public:
 
     ~GetCandlesData();
 
-    void get_candles_data();
-    void close_connection();
+    std::vector<CandlesData> response_get_candles_data();
+
 };
 
 

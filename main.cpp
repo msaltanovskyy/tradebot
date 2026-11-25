@@ -1,7 +1,8 @@
 #include <iostream>
+#include <ostream>
 
-#include "cpr/cookies.h"
 #include "api/headers/get_candles_data.h"
+#include <thread>
 
 int main() {
 
@@ -12,8 +13,12 @@ int main() {
     GetCandlesData candles_data_tf_1d("BTC-USD","1d",500,"https://open-api.bingx.com",
     "/openApi/cswap/v1/market/klines", 1);
 
-    candles_data_tf_1h.get_candles_data();
-    candles_data_tf_4h.get_candles_data();
-    candles_data_tf_1d.get_candles_data();
+    std::thread t1(&GetCandlesData::response_get_candles_data, &candles_data_tf_1h);
+    std::thread t2(&GetCandlesData::response_get_candles_data, &candles_data_tf_4h);
+    std::thread t3(&GetCandlesData::response_get_candles_data, &candles_data_tf_1d);
+
+    t1.join();
+    t2.join();
+    t3.join();
 
 }
