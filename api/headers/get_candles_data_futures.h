@@ -7,18 +7,10 @@
 
 #include <string>
 #include <vector>
+#include "../structs/CandlesData.h"
 
 
-struct CandlesData {
-    std::string open;
-    std::string close;
-    std::string high;
-    std::string low;
-    std::string volume;
-    int time;
-};
-
-class GetCandlesData {
+class GetCandlesDataFutures {
 
 private:
     std::string market;
@@ -28,7 +20,7 @@ private:
     std::string route;
     int32_t t_zone;
 public:
-    GetCandlesData(std::string market,
+    GetCandlesDataFutures(std::string market,
            std::string timeframe,
            int64_t limit,
            std::string hostname,
@@ -41,7 +33,7 @@ public:
       route(std::move(route)),
       t_zone(time_zone) {}
 
-    ~GetCandlesData();
+    ~GetCandlesDataFutures();
 
     std::vector<CandlesData> response_get_candles_data();
 

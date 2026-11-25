@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 add_subdirectory(lib/cpr)
 
 add_executable(tradebotV2 main.cpp
-        api/get_candles_data.cpp
-        api/headers/get_candles_data.h)
+        api/get_candles_data_futures.cpp
+        api/headers/get_candles_data_futures.h
+        api/structs/CandlesData.h)
 
 target_link_libraries(tradebotV2 PRIVATE cpr::cpr)

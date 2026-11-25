@@ -1,12 +1,11 @@
-#include "headers/get_candles_data.h"
-
+#include "headers/get_candles_data_futures.h"
 #include <cpr/cpr.h>
 #include <nlohmann/json.hpp>
 
-GetCandlesData::~GetCandlesData() = default;
+GetCandlesDataFutures::~GetCandlesDataFutures() = default;
 
 
-std::vector<CandlesData> GetCandlesData::response_get_candles_data() {
+std::vector<CandlesData> GetCandlesDataFutures::response_get_candles_data() {
 
     std::map<std::string, std::string> params = {
         {"symbol", market},
